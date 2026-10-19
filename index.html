@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SignalMind – Forex & Gold Signals</title>
+<meta name="description" content="Educational forex and gold signal dashboard.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo">S</span><div><b>SignalMind</b><small>Forex &amp; Gold signals</small></div></div>
+  <div class="top-r">
+    <span class="pill" id="status"><i></i><span id="statusText">Starting…</span></span>
+    <button id="pause" class="btn">Pause</button>
+    <button id="openSet" class="btn">⚙ Settings</button>
+  </div>
+</header>
+
+<main class="app">
+  <div class="banner" id="banner" hidden></div>
+  <section class="stats" id="stats"></section>
+  <div class="layout">
+    <aside class="watch" id="watch" aria-label="Markets"></aside>
+    <section id="detail"></section>
+  </div>
+
+  <section class="panel">
+    <div class="panel-h"><h2>Gemini market note</h2>
+      <div><label class="chk"><input type="checkbox" id="auto"> auto-refresh</label> <button id="gen" class="btn pri">Generate note</button></div></div>
+    <div id="note" class="note">Press “Generate note” for a short AI desk note that includes the gold trade plan.</div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-h"><h2>Signal tracker</h2></div>
+    <div class="scroll"><table id="hist"></table></div>
+  </section>
+
+  <details class="panel help">
+    <summary>How to read this dashboard</summary>
+    <ul>
+      <li><b>BUY / SELL / WAIT</b> – the model scores each market from -100 to +100. Beyond ±40 it gives a signal; otherwise it waits.</li>
+      <li><b>Entry, Stop, TP1–TP3</b> – where to get in, where the idea is wrong (stop), and three profit targets. “R” means multiples of your risk: 2R = win twice what you risk.</li>
+      <li><b>Lot size</b> – calculated from your balance and risk % (change both in Settings).</li>
+      <li><b>Short horizon</b> – signals use 1-minute prices, so levels are tight and short-lived.</li>
+    </ul>
+    <p class="mut">Educational tool, not financial advice. Trading carries a high risk of loss.</p>
+  </details>
+</main>
+
+<dialog id="settings">
+  <form method="dialog">
+    <h3>Settings</h3>
+    <label>Account balance (USD)<input type="number" id="setBal" min="0" step="100"></label>
+    <label>Risk per trade (%)<input type="number" id="setRsk" min="0" step="0.25"></label>
+    <label>Price refresh
+      <select id="setPoll"><option value="60000">Every 1 minute</option><option value="120000">Every 2 minutes</option><option value="300000">Every 5 minutes</option><option value="600000">Every 10 minutes</option></select>
+      <small>Slower refresh saves your Twelve Data daily credits.</small></label>
+    <label>Theme
+      <select id="setTheme"><option value="auto">Match my device</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+    <div class="dlg-b"><button class="btn pri" value="ok">Done</button></div>
+  </form>
+</dialog>
+
+<script src="js/config.js"></script>
+<script src="js/indicators.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
